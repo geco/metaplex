@@ -819,6 +819,7 @@ const RoyaltiesSplitter = (props: {
                 </Col>
                 <Col span={3}>
                   <InputNumber<number>
+                    disabled={true}
                     min={0}
                     max={100}
                     formatter={value => `${value}%`}
@@ -829,7 +830,7 @@ const RoyaltiesSplitter = (props: {
                   />
                 </Col>
                 <Col span={4} style={{ paddingLeft: 12 }}>
-                  <Slider value={amt} onChange={handleChangeShare} />
+                  <Slider disabled={true} value={amt} onChange={handleChangeShare} />
                 </Col>
                 {props.isShowErrors && amt === 0 && (
                   <Col style={{ paddingLeft: 12 }}>
@@ -942,12 +943,12 @@ const RoyaltiesStep = (props: {
       )}
       <Row>
         <span
-          onClick={() => setShowCreatorsModal(true)}
+          //onClick={() => setShowCreatorsModal(true)}
           style={{ padding: 10, marginBottom: 10 }}
         >
           <span
             style={{
-              color: 'white',
+              color: '#555555',
               fontSize: 25,
               padding: '0px 8px 3px 8px',
               background: 'rgb(57, 57, 57)',
@@ -960,7 +961,7 @@ const RoyaltiesStep = (props: {
           </span>
           <span
             style={{
-              color: 'rgba(255, 255, 255, 0.7)',
+              color: '#555555',
               verticalAlign: 'middle',
               lineHeight: 1,
             }}
