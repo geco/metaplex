@@ -39,6 +39,51 @@ import { MetaAvatar, MetaAvatarDetailed } from '../../components/MetaAvatar';
 import { AmountLabel } from '../../components/AmountLabel';
 import { ClickToCopy } from '../../components/ClickToCopy';
 
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  HatenaShareButton,
+  InstapaperShareButton,
+  LineShareButton,
+  LinkedinShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  OKShareButton,
+  PinterestShareButton,
+  PocketShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TumblrShareButton,
+  TwitterShareButton,
+  ViberShareButton,
+  VKShareButton,
+  WhatsappShareButton,
+  WorkplaceShareButton
+} from "react-share";
+import {
+  EmailIcon,
+  FacebookIcon,
+  FacebookMessengerIcon,
+  HatenaIcon,
+  InstapaperIcon,
+  LineIcon,
+  LinkedinIcon,
+  LivejournalIcon,
+  MailruIcon,
+  OKIcon,
+  PinterestIcon,
+  PocketIcon,
+  RedditIcon,
+  TelegramIcon,
+  TumblrIcon,
+  TwitterIcon,
+  ViberIcon,
+  VKIcon,
+  WeiboIcon,
+  WhatsappIcon,
+  WorkplaceIcon
+} from "react-share";
+
 export const AuctionItem = ({
   item,
   index,
@@ -371,6 +416,44 @@ export const AuctionView = () => {
               </div>
             </Col>
           </Row>
+          <Row gutter={[44, 0]}>
+            <Col span={24} md={24}>
+              <div className={'share-container'}>            
+                <TwitterShareButton
+                  url={`https://explorer.solana.com/account/${
+                              art?.mint || ''
+                            }${
+                              env.indexOf('main') >= 0 ? '' : `?cluster=${env}`
+                            }`}
+                  title={art.title}
+                >
+                  <TwitterIcon size={64} round />
+                </TwitterShareButton>
+                <FacebookShareButton
+                  url={`https://explorer.solana.com/account/${
+                              art?.mint || ''
+                            }${
+                              env.indexOf('main') >= 0 ? '' : `?cluster=${env}`
+                            }`}
+                  title={art.title}
+                >
+                  <FacebookIcon size={64} round />
+                </FacebookShareButton>
+                <VKShareButton
+                  url={`https://explorer.solana.com/account/${
+                              art?.mint || ''
+                            }${
+                              env.indexOf('main') >= 0 ? '' : `?cluster=${env}`
+                            }`}
+                  title={art.title}
+                >
+                  <VKIcon size={64} round />
+                </VKShareButton>
+                
+              </div>
+            </Col>
+          </Row>
+          
 
           {!auction && <Skeleton paragraph={{ rows: 6 }} />}
           {auction && (
