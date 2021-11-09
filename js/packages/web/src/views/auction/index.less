@@ -66,14 +66,22 @@ h6 {
 .share-container {
   display: flex;
   width: 100%;
-  justify-content: flex-start;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  padding: 24px;
+  justify-content: center;
+  border: none;
+  padding: 12px;
   margin-top: 24px;
   button {
     margin-left: 12px;
   }
 }
+@media (max-width: 770px) {
+  .share-container {
+    padding: 0px;
+    margin-top: 6px;
+  }
+
+}
+
 .auction-mobile-container{
   padding: 15px;
   .auction-mobile-section{

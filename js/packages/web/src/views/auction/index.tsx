@@ -44,6 +44,7 @@ import { useTokenList } from '../../contexts/tokenList';
 import {
   EmailShareButton,
   FacebookShareButton,
+  FacebookMessengerShareButton,
   HatenaShareButton,
   InstapaperShareButton,
   LineShareButton,
@@ -138,7 +139,7 @@ export const AuctionView = () => {
   useEffect(() => {
     pullAuctionPage(id);
   }, []);
-
+  
   let edition = '';
   if (art.type === ArtType.NFT) {
     edition = 'Unique';
@@ -181,6 +182,66 @@ export const AuctionView = () => {
     );
   });
 
+  const shareUrl = `${window.location.origin}/#/auction/${id}`;
+  let shareText = art.title;
+  if (data && data.description) shareText = `${art.title} - ${data.description}`;
+
+  const appId = ''; // todo FacebookMessengerShareButton: Facebook application id
+  
+  const shareCointainer = (shareSize) => (
+    <div className={'share-container'}>
+      <RedditShareButton
+        url={shareUrl}
+        title={shareText}
+      >
+        <RedditIcon size={shareSize} round />
+      </RedditShareButton>              
+      <TwitterShareButton
+        url={shareUrl}
+        title={shareText}
+      >
+        <TwitterIcon size={shareSize} round />
+      </TwitterShareButton>
+      <FacebookShareButton
+        url={shareUrl}
+        quote={shareText}
+      >
+        <FacebookIcon size={shareSize} round />
+      </FacebookShareButton>                
+      <TelegramShareButton
+        url={shareUrl}
+        title={shareText}
+      >
+        <TelegramIcon size={shareSize} round />
+      </TelegramShareButton>
+      <WhatsappShareButton
+        url={shareUrl}
+        title={shareText}
+      >
+        <WhatsappIcon size={shareSize} round />
+      </WhatsappShareButton>
+      <FacebookMessengerShareButton
+        appId={appId}
+        url={shareUrl}
+      >
+        <FacebookMessengerIcon size={shareSize} round />
+      </FacebookMessengerShareButton> 
+      <LinkedinShareButton
+        url={shareUrl}
+        title={shareText}
+      >
+        <LinkedinIcon size={shareSize} round />
+      </LinkedinShareButton>                    
+      <EmailShareButton
+        url={shareUrl}
+        subject={art.title}
+        body={description}
+      >
+        <EmailIcon size={shareSize} round />
+      </EmailShareButton>                    
+      
+    </div>  
+  );
   if (width < 768) {
     return (
       <Row
@@ -232,6 +293,11 @@ export const AuctionView = () => {
             </div>
           </div>
         </Col>
+
+        <Col className="auction-mobile-section">
+          { shareCointainer(24) }
+        </Col>
+        
 
         <Col className="auction-mobile-section" span={24}>
           {!auction && <Skeleton paragraph={{ rows: 6 }} />}
@@ -437,39 +503,7 @@ export const AuctionView = () => {
           </Row>
           <Row gutter={[44, 0]}>
             <Col span={24} md={24}>
-              <div className={'share-container'}>            
-                <TwitterShareButton
-                  url={`https://explorer.solana.com/account/${
-                              art?.mint || ''
-                            }${
-                              env.indexOf('main') >= 0 ? '' : `?cluster=${env}`
-                            }`}
-                  title={art.title}
-                >
-                  <TwitterIcon size={64} round />
-                </TwitterShareButton>
-                <FacebookShareButton
-                  url={`https://explorer.solana.com/account/${
-                              art?.mint || ''
-                            }${
-                              env.indexOf('main') >= 0 ? '' : `?cluster=${env}`
-                            }`}
-                  title={art.title}
-                >
-                  <FacebookIcon size={64} round />
-                </FacebookShareButton>
-                <VKShareButton
-                  url={`https://explorer.solana.com/account/${
-                              art?.mint || ''
-                            }${
-                              env.indexOf('main') >= 0 ? '' : `?cluster=${env}`
-                            }`}
-                  title={art.title}
-                >
-                  <VKIcon size={64} round />
-                </VKShareButton>
-                
-              </div>
+              { shareCointainer(32) }
             </Col>
           </Row>
           
